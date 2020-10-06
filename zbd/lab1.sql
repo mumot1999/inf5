@@ -64,3 +64,22 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Najlepiej zarabia pracownik ' || vNazwisko);
     DBMS_OUTPUT.PUT_LINE('Pracuje on jako ' || vEtat);
 END;
+-- 6
+DECLARE
+    TYPE tDane IS RECORD (
+        etat VARCHAR(50),
+        nazwisko VARCHAR(100)
+    );
+    vPracownik tDane;
+BEGIN
+    SELECT p.NAZWISKO, p.ETAT
+    into vPracownik
+    from PRACOWNICY p
+    order by p.PLACA_POD DESC
+        FETCH FIRST ROW ONLY;
+
+    DBMS_OUTPUT.PUT_LINE('Najlepiej zarabia pracownik ' || vPracownik.nazwisko);
+    DBMS_OUTPUT.PUT_LINE('Pracuje on jako ' || vPracownik.etat);
+END;
+
+-- 6
