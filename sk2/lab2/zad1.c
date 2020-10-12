@@ -29,24 +29,11 @@ int main(int argc , char *argv[])
 	}
 	
 	puts("Connected\n");
-	
-	//Send some data
-	message = "GET /?st=1 HTTP/1.1\r\nHost: www.msn.com\r\n\r\n";
-	if( send(socket_desc , message , strlen(message) , 0) < 0)
-	{
-		puts("Send failed");
-		return 1;
+
+	while(recv(socket_desc, server_reply , 2 , 0)){
+		printf("%s", server_reply);
 	}
-	puts("Data Send\n");
-	
-	//Receive a reply from the server
-	if( recv(socket_desc, server_reply , 6000 , 0) < 0)
-	{
-		puts("recv failed");
-	}
-	puts("Reply received\n");
-	puts(server_reply);
-	
+
 	return 0;
 }
  
