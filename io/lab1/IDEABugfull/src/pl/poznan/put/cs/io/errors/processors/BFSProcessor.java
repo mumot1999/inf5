@@ -47,7 +47,7 @@ public class BFSProcessor {
         if (head == null) {
             return;
         }
-        result.add(new Integer(nodeNo));
+        result.add(new Integer(head));
         if (queue.peek() == null) {
             return;
         }
