@@ -46,7 +46,6 @@ public class DataInput {
         BufferedReader input = getBufferedReader();
         try {
             String line = null;
-            int x = 0;
             int y = 0;
             // read operation
             line = input.readLine();
@@ -56,10 +55,9 @@ public class DataInput {
             initailizeMatrix();
             while ((line = input.readLine()) != null && line.length() > 0) {
                 for (int i = 0; i < line.length(); i++) {
-                    matrix[x][y] = Integer.parseInt(String.valueOf(line.charAt(i)));
+                    matrix[i][y] = Integer.parseInt(String.valueOf(line.charAt(i)));
                 }
                 y++;
-                x = 0;
             }
         } catch (Exception ex) {
             throw ex;
