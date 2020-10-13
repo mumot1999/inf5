@@ -27,7 +27,6 @@ public class BFSProcessor {
         if (beginningNode == -1) {
             return null;
         }
-        queue.add(new Integer(beginningNode));
         search(beginningNode);
         result.addAll(findNodesWthoutNeighbors());
         return result;
