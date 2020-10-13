@@ -55,7 +55,7 @@ public class DataInput {
             initailizeMatrix();
             while ((line = input.readLine()) != null && line.length() > 0) {
                 for (int i = 0; i < line.length(); i++) {
-                    matrix[i][y] = Integer.parseInt(String.valueOf(line.charAt(i)));
+                    matrix[y][i] = Integer.parseInt(String.valueOf(line.charAt(i)));
                 }
                 y++;
             }
