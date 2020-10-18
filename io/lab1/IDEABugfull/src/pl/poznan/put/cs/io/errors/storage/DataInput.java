@@ -22,9 +22,13 @@ public class DataInput {
 
     int[][] matrix;
 
+    /**
+     * Sets name of input file.
+     *
+     * @param inputName name of input file, if equals to console, data will be loaded from standard input
+     */
     public DataInput(String inputName) {
         this.inputName = inputName;
-
     }
 
     private void initailizeMatrix() {
@@ -79,6 +83,11 @@ public class DataInput {
         return new BufferedReader(new FileReader(new File(inputName)));
     }
 
+    /**
+     * Returns int matrix of file
+     *
+     * @return int matrix
+     */
     public int[][] getMatrix() {
         return matrix;
     }
