@@ -14,6 +14,11 @@ public class DataOutput {
 
     private String outputName = null;
 
+    /**
+     * Sets name of output file.
+     *
+     * @param outputName name of output file
+     */
     public DataOutput(String outputName) {
         this.outputName = outputName;
     }
