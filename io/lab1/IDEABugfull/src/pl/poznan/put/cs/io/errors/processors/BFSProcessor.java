@@ -57,6 +57,7 @@ public class BFSProcessor {
     /**
      * Looks for the node with the lowest index number, which has got at least
      * one neighbor
+     * Returns -1 if not found
      *
      * @return the lowest possible index of the node, which has got at least one
      * neighbor
