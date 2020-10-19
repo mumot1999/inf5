@@ -36,11 +36,10 @@ plt.plot(
     indexes,
     [exp.evalf(subs={x: index}) for index in indexes],
 )
-for s in solve:
-    plt.annotate(str(s), (s, 0))
 
 plt.margins(0)
 plt.grid()
+plt.scatter(solve, [0] * len(solve))
 plt.show()
 plt.close()
 ```
@@ -60,10 +59,14 @@ eq1 = sym.Eq(x**2 + 3*y, 10)
 eq2 = sym.Eq(4*x - y**2, -2)
 solutions = sym.solve((eq1, eq2), (x, y))
 
-print(solutions)
+solutions
+```
 
+```python pycharm={"name": "#%%\n"}
 len(solutions)
+```
 
+```python pycharm={"name": "#%%\n"}
 print("solutions:")
 for sol in solutions:
     for v in sol:
