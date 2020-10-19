@@ -75,4 +75,46 @@ from sympy import (sin, log, cos)
 
 diff_exp = sin(log(x, 2)) * cos(x ** 2) / x
 diff_exp.diff(x)
+
+```
+
+<!-- #region pycharm={"name": "#%% md\n"} -->
+## zad 2 - numpy
+<!-- #endregion -->
+
+```python pycharm={"name": "#%%\n"}
+matrix = np.array([
+    [1, 3, 1, 2],
+    [1, 2, 5, 8],
+    [3, 1, 2, 9],
+    [5, 4, 2, 1]
+])
+```
+
+```python pycharm={"name": "#%%\n"}
+matrix2 = np.delete(matrix, 0, axis=0)
+matrix2 = np.delete(matrix2, -1, axis=0)
+matrix2 = np.delete(matrix2, -1, axis=1)
+matrix2
+```
+
+```python pycharm={"name": "#%%\n"}
+matrix3 = np.array([
+    [ 2, 3, 1],
+    [ 5, 1, 3]
+])
+
+matrix4 = matrix3.T
+matrix4
+```
+
+```python pycharm={"name": "#%%\n"}
+matrix2.dot(matrix4)
+```
+
+```python pycharm={"name": "#%%\n"}
+for step in [np.math.pi, 2*np.math.pi/10, 2*np.math.pi/100]:
+    indexes = np.arange(-np.math.pi, np.math.pi+1, step)
+    plt.margins(0)
+    plt.plot(indexes, [sin(i) for i in indexes])
 ```
