@@ -44,3 +44,35 @@ plt.grid()
 plt.show()
 plt.close()
 ```
+
+```python pycharm={"name": "#%%\n"}
+#1.2
+```
+
+```python pycharm={"name": "#%%\n"}
+# 1.2
+from sympy.interactive import printing
+printing.init_printing(use_latex=True)
+
+x, y = sym.symbols("x y")
+
+eq1 = sym.Eq(x**2 + 3*y, 10)
+eq2 = sym.Eq(4*x - y**2, -2)
+solutions = sym.solve((eq1, eq2), (x, y))
+
+print(solutions)
+
+len(solutions)
+
+print("solutions:")
+for sol in solutions:
+    for v in sol:
+        print(v, '=', v.evalf())
+```
+
+```python pycharm={"name": "#%%\n"}
+from sympy import (sin, log, cos)
+
+diff_exp = sin(log(x, 2)) * cos(x ** 2) / x
+diff_exp.diff(x)
+```
