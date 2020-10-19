@@ -117,7 +117,7 @@ matrix2.dot(matrix4)
 
 ```python pycharm={"name": "#%%\n"}
 for step in [np.math.pi, 2*np.math.pi/10, 2*np.math.pi/100]:
-    indexes = np.arange(-np.math.pi, np.math.pi+1, step)
+    indexes = np.arange(-np.math.pi, np.math.pi+0.00001, step)
     plt.margins(0)
     plt.plot(indexes, [sin(i) for i in indexes])
 ```
