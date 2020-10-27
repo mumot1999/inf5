@@ -21,10 +21,12 @@ struct thread_data_t
 //wskaĹşnik na funkcjÄ opisujÄcÄ zachowanie wÄtku
 void *ThreadBehavior(void *t_data)
 {
-    struct thread_data_t *th_data = (struct thread_data_t*)t_data;
-    //dostÄp do pĂłl struktury: (*th_data).pole
-    //TODO (przy zadaniu 1) klawiatura -> wysyĹanie albo odbieranie -> wyĹwietlanie
-
+   struct thread_data_t *th_data = (struct thread_data_t*)t_data;
+   char buf[1000];
+   while(th_data->connection_socket_descriptor){
+      gets(buf);
+      write(th_data->connection_socket_descriptor, buf, 100);
+   }
     pthread_exit(NULL);
 }
 
@@ -33,19 +35,25 @@ void *ThreadBehavior(void *t_data)
 void handleConnection(int connection_socket_descriptor) {
     //wynik funkcji tworzÄcej wÄtek
     int create_result = 0;
+   char buf[1000];
 
     //uchwyt na wÄtek
     pthread_t thread1;
 
     //dane, ktĂłre zostanÄ przekazane do wÄtku
     struct thread_data_t t_data;
-    //TODO
+
+    t_data.connection_socket_descriptor = connection_socket_descriptor;
     create_result = pthread_create(&thread1, NULL, ThreadBehavior, (void *)&t_data);
     if (create_result){
        printf("BĹÄd przy prĂłbie utworzenia wÄtku, kod bĹÄdu: %d\n", create_result);
        exit(-1);
     }
-
+   while(connection_socket_descriptor){
+      while(recv(connection_socket_descriptor, buf , 2 , 0)){
+         printf("%s", buf);
+      }
+   }
     //TODO (przy zadaniu 1) odbieranie -> wyĹwietlanie albo klawiatura -> wysyĹanie
 }
 
@@ -91,7 +99,6 @@ int main (int argc, char *argv[])
 
    handleConnection(connection_socket_descriptor);
 
-   close(connection_socket_descriptor);
    return 0;
 
 }
