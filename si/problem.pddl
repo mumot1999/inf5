@@ -13,7 +13,7 @@
     (wolna l8)
     (wolna l12)
     (ogrodnik l1)
-    (trzyma sadzonki)
+    (znajduje_sie sadzonki l3)
     (znajduje_sie chwast l2)
     (znajduje_sie chwast l7)
     (znajduje_sie chwast l9)

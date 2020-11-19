@@ -16,28 +16,19 @@
 )
 
 (:predicates
-    
-    (odlozyc ?co - trzymane ?gdzie - grzadka)
-    (wziac ?co - trzymane ?gdzie - grzadka)
-    (wyrywac ?gdzie - grzadka)
-    (podlac ?gdzie - grzadka)
-    (zasadzic ?gdzie - grzadka)
-    (przejsc ?skad ?dokad - grzadka)
-
     (ogrodnik ?lokalizacja - grzadka)
     (trzyma ?co - przedmiot)
     (znajduje_sie ?co - obszar ?gdzie - grzadka)
     (wolna ?lokalizacja - grzadka)
     (podlane ?lokalizacja - grzadka)
-
 )
 
 ;define actions here
 (:action odlozyc
     :parameters (?co - przedmiot ?gdzie - grzadka)
     :precondition (and 
-        (ogrodnik ?gdzie)
         (trzyma ?co)
+        (ogrodnik ?gdzie)
     )
     :effect (and 
         (not (trzyma ?co))
@@ -59,9 +50,9 @@
 (:action wyrywac
     :parameters (?gdzie - grzadka)
     :precondition (and 
-        (ogrodnik ?gdzie)
         (not (exists (?x - przedmiot) (trzyma ?x)))
         (znajduje_sie chwast ?gdzie)
+        (ogrodnik ?gdzie)
     )
     :effect (and 
         (not (znajduje_sie chwast ?gdzie))
@@ -71,29 +62,34 @@
 (:action podlac
     :parameters (?gdzie - grzadka)
     :precondition (and 
-        (exists (?x - konewka) (trzyma ?x))
+        (trzyma konewka)
         (znajduje_sie warzywo ?gdzie)
-        (ogrodnik ?gdzie)
         (not (podlane ?gdzie))
+        (ogrodnik ?gdzie)
     )
     :effect (and (podlane ?gdzie))
 )
 (:action zasadzic
     :parameters (?gdzie - grzadka)
     :precondition (and 
-        (ogrodnik ?gdzie)
         (wolna ?gdzie)
-        (exists (?x - sadzonki) (trzyma ?x))
+        (trzyma sadzonki)
+        (ogrodnik ?gdzie)
     )
     :effect (and 
         (znajduje_sie warzywo ?gdzie)
-        (not (wolna ?gdzie))
+        ; (not (wolna ?gdzie))
     )
 )
 (:action przejsc
     :parameters (?skad ?dokad - grzadka)
     :precondition (and 
         (ogrodnik ?skad)
+        (or
+            (and (trzyma konewka) (podlane ?skad)) 
+            (and (trzyma sadzonki) (znajduje_sie warzywo ?skad))
+            (not (exists (?x - przedmiot) (trzyma ?x)))
+        )
     )
     :effect (and 
         (not (ogrodnik ?skad))
